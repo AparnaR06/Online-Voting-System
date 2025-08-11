@@ -1,0 +1,22 @@
+CREATE DATABASE OnlineVoting;
+USE OnlineVoting;
+CREATE TABLE Candidates (
+    candidate_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL UNIQUE
+);
+CREATE TABLE Votes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    voter_id VARCHAR(20) NOT NULL,
+    voter_name VARCHAR(50) NOT NULL,
+    vote_date DATE NOT NULL,
+    candidate_id INT,
+    FOREIGN KEY (candidate_id) REFERENCES Candidates(candidate_id),
+    UNIQUE (voter_id) 
+);
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    has_voted BOOLEAN DEFAULT FALSE
+);
+INSERT INTO Candidates (name) VALUES ('Candidate A'), ('Candidate B'), ('Candidate C');
